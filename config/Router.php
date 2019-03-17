@@ -24,10 +24,10 @@ class Router
       if(method_exists($controller, $actionName)){
         $controller->$actionName();
       }else{
-        $error->message("La accion $actionName no existe");
+        $error->message = "La accion $actionName no existe";
       }
     }else{
-      $error->message("El controller $controllerName no existe");
+      $error->message = "El controller $controllerName no existe";
     }
   }
 }
