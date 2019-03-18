@@ -1,7 +1,7 @@
 <?php
 include_once 'config/constantes.php';
 include_once 'controllers/Controller.php';
-include_once 'controllers/ErrorController.php';
+include_once 'controllers/FlashController.php';
 /**
  * Router
  */
@@ -10,13 +10,15 @@ class Router
 
   function __construct()
   {
-    //Crear una instancia de ErrorController para lanzar errores
-    $error = new ErrorController();
+    //Crear una instancia de mensajes para las vistas
+    $flash = new FlashController();
     //Destructurar la URL
-    $url = (isset($_GET['url']) && $_GET['url']!='index.php')?$_GET['url']:URL_DEFAULT;
-    $url = explode('/',$url);
+    $url = isset($_GET['url'])?$_GET['url']:URL_DEFAULT;
+    $url = explode('/', $url);
+    $controllerName = isset($url[0])?$url[0]:CONTROLLER_DEFAULT;
+    $actionName = isset($url[1])?$url[1]:ACTION_DEFAULT;
+    //Nombre de la clase controller
     $controllerName = ucfirst($url[0]).'Controller';
-    $actionName = $url[1];
     $ruta = 'controllers/'.$controllerName.'.php';
     if(file_exists($ruta)){
       include_once $ruta;
@@ -24,11 +26,12 @@ class Router
       if(method_exists($controller, $actionName)){
         $controller->$actionName();
       }else{
-        $error->message = "La accion $actionName no existe";
+        $flash->error = "La accion $actionName no existe";
       }
     }else{
-      $error->message = "El controller $controllerName no existe";
+      $flash->error = "El controller $controllerName no existe";
     }
+    $flash->show();
   }
 }
 

@@ -9,11 +9,12 @@ class PersonasController extends Controller
   function __construct()
   {
     parent::__construct();
-    echo "<br />Hola desde PersonasController";
+
   }
 
   function index(){
-    $persona = new Persona(1,'Felix');
+    $personaModel = new Persona();
+    $personas = $personaModel->getPersonas();
     require_once 'views/personas/index.php';
   }
 }

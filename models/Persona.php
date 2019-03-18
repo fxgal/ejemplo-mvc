@@ -1,15 +1,18 @@
 <?php
+include_once 'models/Model.php';
 /**
  * Modelo Personas
  */
-class Persona
+class Persona extends Model
 {
   private $id;
   private $nombre;
-  function __construct($id = null, $nombre = null)
+  private $apellidos;
+  function __construct($id = null, $nombre = null, $apellidos = null)
   {
     $this->id = $id;
     $this->nombre = $nombre;
+    $this->apellidos = $apellidos;
   }
 
   public function __set($var, $valor) {
@@ -24,6 +27,9 @@ class Persona
        return $this->$var;
      }
      return NULL;
+   }
+   function getPersonas(){
+     return $this->query('SELECT * FROM personas');
    }
 }
 
