@@ -5,11 +5,11 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="<?= URL_BASE ?>personas/index">Inicio <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= URL_BASE ?>personas/index">Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Agregar</a>
+        <a class="nav-link" href="<?= URL_BASE ?>personas/add">Agregar</a>
       </li>
     </ul>
   </div>

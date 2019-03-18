@@ -26,12 +26,11 @@ class Router
       if(method_exists($controller, $actionName)){
         $controller->$actionName();
       }else{
-        $flash->error = "La accion $actionName no existe";
+        $flash->show('error',"La accion $actionName no existe");
       }
     }else{
-      $flash->error = "El controller $controllerName no existe";
+      $flash->show('error',"El controlador $controllerName no existe");
     }
-    $flash->show();
   }
 }
 
