@@ -17,7 +17,12 @@
         <td><?= $persona->nombres ?></td>
         <td><?= $persona->apellidos ?></td>
         <td><?= $persona->apodo ?></td>
-        <td></td>
+        <td>
+          <div class="btn-group">
+            <a href="<?= URL_BASE ?>personas/edit&id=<?= $persona->id ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+            <a href="<?= URL_BASE ?>personas/delete&id=<?= $persona->id ?>" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a>
+          </div>
+        </td>
       </tr>
     <?php endwhile; ?>
     </tbody>

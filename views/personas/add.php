@@ -1,3 +1,4 @@
+<h2>Agregar nueva persona</h2>
 <form method="POST" action="<?= URL_BASE ?>personas/add">
   <fieldset>
     <div class="row">

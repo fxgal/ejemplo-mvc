@@ -28,6 +28,20 @@ class PersonasController extends Controller
     require_once 'views/personas/add.php';
   }
 
+  function edit(){
+    if(!empty($_POST)){
+      extract($_POST);
+      $persona = new Persona($id, $nombres, $apellidos, $apodo);
+      $persona->save($persona);
+      header("Location: ".URL_BASE."personas/index");
+    }
+    $persona = new Persona();
+    $id = isset($_GET['id'])?$_GET['id']:null;
+    $persona = $persona->getPersona($id);
+    if(!isset($persona)) header("Location: ".URL_BASE."personas/index");
+    require_once 'views/personas/edit.php';
+  }
+
 }
 
 ?>

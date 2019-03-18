@@ -32,14 +32,31 @@ class Persona extends Model
    }
    /**
     * Lista de Personas
-    * @return [type] [description]
     */
    function getPersonas(){
      return $this->query('SELECT * FROM personas');
    }
-
+   /**
+    * Datos de Persona
+    */
+   function getPersona($id){
+     $persona = $this->query("SELECT * FROM personas WHERE id=$id");
+     return ($persona->num_rows>0)?$persona->fetch_object():null;
+   }
+   /**
+    * Guardar los datos de una persona
+    */
    function save($persona){
-     $sql = "INSERT INTO personas VALUES(null,'$persona->nombres','$persona->apellidos','$persona->apodo')";
+     if ($persona->id) {
+       $sql = "UPDATE personas
+       SET
+         nombres='$persona->nombres',
+         apellidos='$persona->apellidos',
+         apodo='$persona->apodo'
+       WHERE id=$persona->id";
+     }else {
+       $sql = "INSERT INTO personas VALUES(null,'$persona->nombres','$persona->apellidos','$persona->apodo')";
+     }
      return $this->query($sql);
    }
 }
