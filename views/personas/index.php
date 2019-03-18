@@ -6,6 +6,7 @@
         <th>#</th>
         <th>Nombres</th>
         <th>Apellidos</th>
+        <th>Apodo</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -15,6 +16,7 @@
         <td><?= $persona->id ?></td>
         <td><?= $persona->nombres ?></td>
         <td><?= $persona->apellidos ?></td>
+        <td><?= $persona->apodo ?></td>
         <td></td>
       </tr>
     <?php endwhile; ?>

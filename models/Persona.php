@@ -6,13 +6,15 @@ include_once 'models/Model.php';
 class Persona extends Model
 {
   private $id;
-  private $nombre;
+  private $nombres;
   private $apellidos;
-  function __construct($id = null, $nombre = null, $apellidos = null)
+  private $apodo;
+  function __construct($id = null, $nombres = null, $apellidos = null, $apodo = null)
   {
     $this->id = $id;
-    $this->nombre = $nombre;
+    $this->nombres = $nombres;
     $this->apellidos = $apellidos;
+    $this->apodo = $apodo;
   }
 
   public function __set($var, $valor) {
@@ -28,8 +30,17 @@ class Persona extends Model
      }
      return NULL;
    }
+   /**
+    * Lista de Personas
+    * @return [type] [description]
+    */
    function getPersonas(){
      return $this->query('SELECT * FROM personas');
+   }
+
+   function save($persona){
+     $sql = "INSERT INTO personas VALUES(null,'$persona->nombres','$persona->apellidos','$persona->apodo')";
+     return $this->query($sql);
    }
 }
 

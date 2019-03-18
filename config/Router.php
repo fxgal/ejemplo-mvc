@@ -1,7 +1,7 @@
 <?php
 include_once 'config/constantes.php';
 include_once 'controllers/Controller.php';
-include_once 'controllers/FlashController.php';
+include_once 'helpers/Flash.php';
 /**
  * Router
  */
@@ -10,8 +10,6 @@ class Router
 
   function __construct()
   {
-    //Crear una instancia de mensajes para las vistas
-    $flash = new FlashController();
     //Destructurar la URL
     $url = isset($_GET['url'])?$_GET['url']:URL_DEFAULT;
     $url = explode('/', $url);
@@ -26,10 +24,10 @@ class Router
       if(method_exists($controller, $actionName)){
         $controller->$actionName();
       }else{
-        $flash->show('error',"La accion $actionName no existe");
+        Flash::show('error',"La accion $actionName no existe");
       }
     }else{
-      $flash->show('error',"El controlador $controllerName no existe");
+      Flash::show('error',"El controlador $controllerName no existe");
     }
   }
 }

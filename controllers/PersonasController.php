@@ -13,10 +13,21 @@ class PersonasController extends Controller
   }
 
   function index(){
-    $personaModel = new Persona();
-    $personas = $personaModel->getPersonas();
+    $persona = new Persona();
+    $personas = $persona->getPersonas();
     require_once 'views/personas/index.php';
   }
+
+  function add(){
+    if(!empty($_POST)){
+      extract($_POST);
+      $persona = new Persona(null, $nombres, $apellidos, $apodo);
+      $persona->save($persona);
+      header("Location: ".URL_BASE."personas/index");
+    }
+    require_once 'views/personas/add.php';
+  }
+
 }
 
 ?>
