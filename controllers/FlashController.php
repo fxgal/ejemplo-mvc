@@ -8,6 +8,7 @@ class FlashController
 
   function show($type, $message){
     require_once 'views/layouts/flash.php';
+    $type=='error'?die():'';
   }
 }
 
