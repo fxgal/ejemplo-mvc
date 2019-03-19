@@ -19,7 +19,7 @@ class UsuariosController extends Controller
       $usuario->save($usuario);
       if ($aut = $usuario->autenticar($usuario)) {
         $_SESSION['aut']=$aut;
-        header("Location: ".URL_BASE."personas/index");
+        return header("Location: ".URL_BASE."personas/index");
       }
       header("Location: ".URL_BASE."usuarios/register");
     }
@@ -46,14 +46,15 @@ class UsuariosController extends Controller
   function edit(){
     if(!empty($_POST)){
       extract($_POST);
-      $usuario = new Usuario($id, $nombres, $apellidos, $apodo);
+      $usuario = new Usuario(null, $usuario, $clave);
       $usuario->save($usuario);
+      if ($aut = $usuario->autenticar($usuario)) {
+        $_SESSION['aut']=$aut;
+        return header("Location: ".URL_BASE."personas/index");
+      }
       header("Location: ".URL_BASE."usuarios/index");
     }
-    $usuario = new Usuario();
-    $id = isset($_GET['id'])?$_GET['id']:null;
-    $usuario = $usuario->getUsuario($id);
-    if(!isset($usuario)) header("Location: ".URL_BASE."usuarios/index");
+    $usuario = $_SESSION['aut'];
     require_once 'views/usuarios/edit.php';
   }
 
