@@ -2,6 +2,7 @@
 include_once 'config/constantes.php';
 include_once 'controllers/Controller.php';
 include_once 'helpers/Flash.php';
+include_once 'helpers/Auth.php';
 /**
  * Router
  */
@@ -15,6 +16,10 @@ class Router
     $url = explode('/', $url);
     $controllerName = isset($url[0])?$url[0]:CONTROLLER_DEFAULT;
     $actionName = isset($url[1])?$url[1]:ACTION_DEFAULT;
+    //Validar sesiones
+    if(!Auth::verify($controllerName, $actionName)){
+      return header("Location: ".URL_BASE.URL_DEFAULT);
+    }
     //Nombre de la clase controller
     $controllerName = ucfirst($url[0]).'Controller';
     $ruta = 'controllers/'.$controllerName.'.php';
