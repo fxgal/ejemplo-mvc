@@ -18,7 +18,7 @@ class Router
     $actionName = isset($url[1])?$url[1]:ACTION_DEFAULT;
     //Validar sesiones
     if(!Auth::verify($controllerName, $actionName)){
-      return header("Location: ".URL_BASE.URL_DEFAULT);
+      header("Location: ".URL_BASE.URL_DEFAULT);
     }
     //Nombre de la clase controller
     $controllerName = ucfirst($url[0]).'Controller';

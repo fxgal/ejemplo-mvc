@@ -19,7 +19,7 @@ class UsuariosController extends Controller
       $usuario->save($usuario);
       if ($aut = $usuario->autenticar($usuario)) {
         $_SESSION['aut']=$aut;
-        return header("Location: ".URL_BASE."personas/index");
+        header("Location: ".URL_BASE."personas/index");
       }
       header("Location: ".URL_BASE."usuarios/register");
     }
@@ -32,7 +32,7 @@ class UsuariosController extends Controller
       $usuario = new Usuario(null, $usuario, $clave);
       if ($aut = $usuario->autenticar($usuario)) {
         $_SESSION['aut']=$aut;
-        return header("Location: ".URL_BASE."personas/index");
+        header("Location: ".URL_BASE."personas/index");
       }
     }
     require_once 'views/usuarios/login.php';
@@ -50,7 +50,7 @@ class UsuariosController extends Controller
       $usuario->save($usuario);
       if ($aut = $usuario->autenticar($usuario)) {
         $_SESSION['aut']=$aut;
-        return header("Location: ".URL_BASE."personas/index");
+        header("Location: ".URL_BASE."personas/index");
       }
       header("Location: ".URL_BASE."usuarios/index");
     }
