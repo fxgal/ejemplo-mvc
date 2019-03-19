@@ -11,7 +11,7 @@ class Router
   function __construct()
   {
     //Destructurar la URL
-    $url = isset($_GET['url'])?$_GET['url']:URL_DEFAULT;
+    $url = !empty($_GET['url'])?$_GET['url']:URL_DEFAULT;
     $url = explode('/', $url);
     $controllerName = isset($url[0])?$url[0]:CONTROLLER_DEFAULT;
     $actionName = isset($url[1])?$url[1]:ACTION_DEFAULT;
