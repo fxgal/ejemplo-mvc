@@ -59,6 +59,13 @@ class Persona extends Model
      }
      return $this->query($sql);
    }
+   /**
+    * Eliminar los datos de una persona
+    */
+   function delete($persona_id){
+      $sql = "DELETE FROM personas WHERE id=$persona_id";
+     return $this->query($sql);
+   }
 }
 
 ?>

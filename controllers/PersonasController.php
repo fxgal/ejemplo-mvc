@@ -42,6 +42,15 @@ class PersonasController extends Controller
     require_once 'views/personas/edit.php';
   }
 
+  function delete(){
+    if(!empty($_GET['id'])){
+      $persona = new Persona();
+      $persona->delete($_GET['id']);
+      header("Location: ".URL_BASE."personas/index");
+    }
+    if(!isset($persona)) header("Location: ".URL_BASE."personas/index");
+  }
+
 }
 
 ?>
