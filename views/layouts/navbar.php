@@ -5,12 +5,24 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="<?= URL_BASE ?>personas/index">Inicio</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?= URL_BASE ?>personas/add">Agregar</a>
-      </li>
+      <?php if (!empty($_SESSION['aut'])): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= URL_BASE ?>personas/index">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= URL_BASE ?>personas/add">Agregar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= URL_BASE ?>usuarios/logout">Salir</a>
+        </li>
+      <?php else: ?>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= URL_BASE ?>usuarios/login">Entrar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= URL_BASE ?>usuarios/register">Registrarse</a>
+        </li>
+      <?php endif; ?>
     </ul>
   </div>
 </nav>
