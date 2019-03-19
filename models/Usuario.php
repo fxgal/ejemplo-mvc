@@ -35,7 +35,13 @@ class Usuario extends Model
     */
    function autenticar($usuario){
      $usuario = $this->query("SELECT * FROM usuarios WHERE usuario='$usuario->usuario' AND clave='$usuario->clave'");
-     return ($usuario->num_rows>0)?$usuario->fetch_object():null;
+     if($usuario->num_rows>0){
+       $usuario = $usuario->fetch_object();
+       $sql = "UPDATE usuarios SET acceso=now() WHERE id=$usuario->id";
+       $this->query($sql);
+       return $usuario;
+     }
+     return false;
    }
 
    /**
